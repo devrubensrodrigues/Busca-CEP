@@ -2,6 +2,7 @@ package application;
 
 import api.ApiCEP;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -11,8 +12,13 @@ public class Program {
         ApiCEP apiCEP = new ApiCEP();
 
         System.out.print("Digite um CEP: ");
-        System.out.println(apiCEP.bodyAPI(sc.nextLine()));
+        String json = apiCEP.bodyAPI(sc.nextLine());
+        //System.out.println(json);
 
+        FileWriter docJson = new FileWriter("endereco.json");
+        docJson.write(json);
+
+        docJson.close();
         sc.close();
     }
 }
