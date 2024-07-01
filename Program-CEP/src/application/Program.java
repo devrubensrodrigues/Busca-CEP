@@ -1,6 +1,8 @@
 package application;
 
 import api.ApiCEP;
+import entities.Endereco;
+import entities.GSON;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,15 +12,21 @@ public class Program {
     public static void main(String[] args) throws IOException, InterruptedException {
         Scanner sc = new Scanner(System.in);
         ApiCEP apiCEP = new ApiCEP();
+        GSON gson = new GSON();
 
         System.out.print("Digite um CEP: ");
         String json = apiCEP.bodyAPI(sc.nextLine());
-        //System.out.println(json);
+        Endereco endereco = gson.gson().fromJson(json, Endereco.class);
 
-        FileWriter docJson = new FileWriter("endereco.json");
-        docJson.write(json);
+        System.out.println(endereco);
 
-        docJson.close();
+        /*FileWriter docJson = new FileWriter("endereco.json");
+        docJson.write(json);*/
+
+
+
+
+        //docJson.close();
         sc.close();
     }
 }
