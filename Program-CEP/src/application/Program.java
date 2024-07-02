@@ -11,10 +11,15 @@ public class Program {
         Scanner sc = new Scanner(System.in);
         ApiCEP apiCEP = new ApiCEP();
 
-        System.out.print("Digite um CEP: ");
-        Endereco endereco = new Endereco();
-        endereco = apiCEP.bodyAPI(sc.nextLine());
-        System.out.println(endereco);
+        try {
+            System.out.print("Digite um CEP: ");
+            Endereco endereco = apiCEP.bodyAPI(sc.nextLine());
+
+            System.out.println(endereco);
+        } catch(RuntimeException e) {
+            System.out.println(e);
+            System.out.println("Finalizando a aplicação");
+        }
         sc.close();
     }
 }
